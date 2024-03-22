@@ -14,9 +14,9 @@ public class AuthorizationTest {
 
     @Test
     void shouldSuccessfulRegUser(){
-        Generator.RegistrationDto registeredUser = Generator.Registration.getRegUser("active");
-        $("[data-test-id='login'] input").setValue(registeredUser.login);
-        $("[data-test-id='password'] input").setValue(registeredUser.password);
+        var registeredUser = Generator.Registration.getRegUser("active");
+        $("[data-test-id='login'] input").setValue(registeredUser.getLogin());
+        $("[data-test-id='password'] input").setValue(registeredUser.getPassword());
         $("button.button").click();
         $("h2")
                 .shouldHave(Condition.exactText("Личный кабинет"))
@@ -26,8 +26,8 @@ public class AuthorizationTest {
     @Test
     void shouldErrorNotRegister(){
         Generator.RegistrationDto notRegisteredUser = Generator.Registration.getUser("active");
-        $("[data-test-id='login'] input").setValue(notRegisteredUser.login);
-        $("[data-test-id='password'] input").setValue(notRegisteredUser.password);
+        $("[data-test-id='login'] input").setValue(notRegisteredUser.getLogin());
+        $("[data-test-id='password'] input").setValue(notRegisteredUser.getPassword());
         $("button.button").click();
         $("[data-test-id='error-notification'] .notification__content")
                 .shouldHave(Condition.exactText("Ошибка! Неверно указан логин или пароль"))
@@ -37,8 +37,8 @@ public class AuthorizationTest {
     @Test
     void shouldSuccessfulRegBlockUser(){
         Generator.RegistrationDto registeredUser = Generator.Registration.getRegUser("blocked");
-        $("[data-test-id='login'] input").setValue(registeredUser.login);
-        $("[data-test-id='password'] input").setValue(registeredUser.password);
+        $("[data-test-id='login'] input").setValue(registeredUser.getLogin());
+        $("[data-test-id='password'] input").setValue(registeredUser.getPassword());
         $("button.button").click();
         $("[data-test-id='error-notification'] .notification__content")
                 .shouldHave(Condition.exactText("Ошибка! Пользователь заблокирован"))
@@ -49,7 +49,7 @@ public class AuthorizationTest {
     void shouldErrorPassword(){
         Generator.RegistrationDto RegisteredUser = Generator.Registration.getRegUser("active");
         String wrongPassword = Generator.generatePassword();
-        $("[data-test-id='login'] input").setValue(RegisteredUser.login);
+        $("[data-test-id='login'] input").setValue(RegisteredUser.getLogin());
         $("[data-test-id='password'] input").setValue(wrongPassword);
         $("button.button").click();
         $("[data-test-id='error-notification'] .notification__content")
@@ -62,7 +62,7 @@ public class AuthorizationTest {
     void shouldErrorLogin(){
         Generator.RegistrationDto RegisteredUser = Generator.Registration.getRegUser("active");
         String wrongLogin = Generator.generateLogin();
-        $("[data-test-id='login'] input").setValue(RegisteredUser.login);
+        $("[data-test-id='login'] input").setValue(RegisteredUser.getLogin());
         $("[data-test-id='password'] input").setValue(wrongLogin);
         $("button.button").click();
         $("[data-test-id='error-notification'] .notification__content")

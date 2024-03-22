@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id "io.freefair.lombok" version "5.3.0"
 }
 
 group 'ru.netology'
@@ -20,8 +21,8 @@ dependencies {
     // библиотека com.codeborne:selenide используется при построении проекта с использованием Selenide
     testImplementation 'com.codeborne:selenide:6.17.2'
     implementation 'com.github.javafaker:javafaker:1.0.2'
-    testCompileOnly 'org.projectlombok:lombok:1.18.24'
-    testImplementation 'org.projectlombok:lombok:1.18.24'
+    //testCompileOnly 'org.projectlombok:lombok:1.18.24'
+    //testImplementation 'org.projectlombok:lombok:1.18.24'
     testImplementation 'io.rest-assured:rest-assured:4.3.0'
     testImplementation 'com.google.code.gson:gson:2.8.6'
 
